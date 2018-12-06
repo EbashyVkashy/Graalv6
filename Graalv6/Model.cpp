@@ -148,6 +148,7 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 	const int ammount_doors = labyrinth.width * labyrinth.height;
 	const int ammount_torches = (labyrinth.width * labyrinth.height) / 2;
 	const int ammount_darkrooms = (labyrinth.width * labyrinth.height) / 3;
+	const int ammound_food = (labyrinth.width * labyrinth.height) / 2;
 
 	labyrinth.LabCreation(labyrinth.width, labyrinth.height); // initializing labyrinth
 
@@ -264,6 +265,13 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 		int temp = 0;
 		temp = rand() % (labyrinth.height * labyrinth.width);
 		labyrinth.rooms[temp].LightOff();
+	}
+	for (int i = 0; i < ammound_food; i++) //add food
+	{
+		int temp = 0;
+		item_toadd.CreateItem("food");
+		temp = rand() % (labyrinth.height * labyrinth.width);
+		labyrinth.rooms[temp].AddToStash(item_toadd);
 	}
 }
 

@@ -16,11 +16,11 @@ void Room::AddToStash(Item & item)
 	stash.push_back(item);
 }
 
-int Room::CheckStash(std::string itemtype_compare)
+int Room::CheckStash(std::string itemname_compare)
 {
 	for (int i = 0; i < stash.size(); i++)
 	{
-		if (stash[i].itemtype == itemtype_compare)
+		if (stash[i].itemname == itemname_compare)
 		{
 			return i;
 		}

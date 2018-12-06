@@ -12,7 +12,7 @@ public:
 	std::vector<Item> inventory;
 	void PlayerInit(int x, int y);
 	void AddToInventory(Item &);
-	int CheckInventory(std::string itemtype_compare);
+	int CheckInventory(std::string itemname_compare);
 	Item PassFromInv(int itemposition);
 	void RemoveFromInv(int itemposition);
 	void Move(int dir, int x);

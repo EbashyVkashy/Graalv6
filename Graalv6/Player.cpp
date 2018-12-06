@@ -13,11 +13,11 @@ void Player::AddToInventory(Item & itemposition)
 	inventory.push_back(itemposition);
 }
 
-int Player::CheckInventory(std::string itemtype_compare)
+int Player::CheckInventory(std::string itemname_compare)
 {
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		if (inventory[i].itemtype == itemtype_compare)
+		if (inventory[i].itemname == itemname_compare)
 		{
 			return i;
 		}

@@ -49,7 +49,7 @@ int main()
 
 void StandardRoom(Model &model, Commands &commands, Printer &printer,bool &victoryflag)
 {
-	enum command_type {ERROR = 0, MOVE = 1, GET = 2, DROP = 3, OPEN = 4};
+	enum command_type {ERROR = 0, MOVE = 1, GET = 2, DROP = 3, OPEN = 4, EAT = 5};
 	int commandtype = 0;
 	printer.RoomStatus(model);
 	printer.YourCommand();
@@ -108,7 +108,7 @@ void StandardRoom(Model &model, Commands &commands, Printer &printer,bool &victo
 
 void DarkRoom(Model &model, Commands &commands, Printer &printer)
 {
-	enum command_type { ERROR = 0, MOVE = 1, GET = 2, DROP = 3, OPEN = 4 };
+	enum command_type { ERROR = 0, MOVE = 1, GET = 2, DROP = 3, OPEN = 4, EAT = 5};
 	int commandtype = 0;
 	printer.DarkRoomStatus();
 	printer.YourCommand();
@@ -141,6 +141,11 @@ void DarkRoom(Model &model, Commands &commands, Printer &printer)
 	}
 	case OPEN:
 	{	
+		printer.OnlyMove();
+		break;
+	}
+	case EAT:
+	{
 		printer.OnlyMove();
 		break;
 	}

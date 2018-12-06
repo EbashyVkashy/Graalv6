@@ -11,7 +11,7 @@ public:
 	bool light; // 0-no light, 1-light
 	void RoomInit();
 	void AddToStash(Item &item);
-	int CheckStash(std::string itemtype_compare);
+	int CheckStash(std::string itemname_compare);
 	Item PassFromStash(int itemposition);
 	void RemoveFromStash(int itemposition);
 	void LightOff();
