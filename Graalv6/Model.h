@@ -25,6 +25,7 @@ public:
 	bool SouthDoor();
 	int ItemsInStash();
 	std::string ReturnItemName(int position);
+	void Eat(int stash_position);
 	void GenerateLevel();
 	void SetPlayerValues();
 	Model();

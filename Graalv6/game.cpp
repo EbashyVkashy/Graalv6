@@ -101,6 +101,17 @@ void StandardRoom(Model &model, Commands &commands, Printer &printer,bool &victo
 		victoryflag = true;
 		break;
 	}
+	case EAT:
+	{
+		int stash_pointer = model.CheckGet(commands.ReturnCommandValue());
+		if (stash_pointer == -1)
+		{
+			printer.NoSuchFood();
+			return;
+		}
+		model.Eat(stash_pointer);
+		break;
+	}
 	default:
 		break;
 	}

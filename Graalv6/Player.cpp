@@ -57,6 +57,15 @@ void Player::Move(int direction, int x)
 	}
 }
 
+void Player::RestoreLife()
+{
+	life = life + (initial_life % 10);
+	if (life > initial_life)
+	{
+		life = initial_life;
+	}
+}
+
 Player::Player()
 {
 }

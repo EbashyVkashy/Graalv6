@@ -143,6 +143,12 @@ std::string Model::ReturnItemName(int position)
 	return labyrinth.rooms[player.position].stash[position].itemname;
 }
 
+void Model::Eat(int stash_position)
+{
+	labyrinth.rooms[player.position].RemoveFromStash(stash_position);
+	player.RestoreLife();
+}
+
 void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting player initial position
 {
 	const int ammount_doors = labyrinth.width * labyrinth.height;

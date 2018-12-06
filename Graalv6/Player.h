@@ -16,6 +16,7 @@ public:
 	Item PassFromInv(int itemposition);
 	void RemoveFromInv(int itemposition);
 	void Move(int dir, int x);
+	void RestoreLife();
 	Player();
 	~Player();
 };

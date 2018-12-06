@@ -12,6 +12,7 @@ public:
 	void NoDoor();
 	void NoSuchCommand();
 	void NoSuchItem();
+	void NoSuchFood();
 	void RoomStatus(Model &);
 	void DarkRoomStatus();
 	void OnlyMove();

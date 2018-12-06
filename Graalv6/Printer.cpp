@@ -45,6 +45,11 @@ void Printer::NoSuchItem()
 	std::cout << "There is no such item." << std::endl;
 }
 
+void Printer::NoSuchFood()
+{
+	std::cout << "The is no such food." << std::endl;
+}
+
 void Printer::RoomStatus(Model & model)
 {
 	std::cout << "You are in the room [" << model.PlayerXpos() << "." << model.PlayerYpos() << "]. There are [" << model.NumberOfDoors() << "] doors";

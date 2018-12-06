@@ -29,6 +29,11 @@ int Commands::GetCommand()
 	{
 		lastcommand_type = 4;
 	}
+	if (lastcommand_value.substr(0, 4) == "eat ")
+	{
+		lastcommand_type = 5;
+		lastcommand_value = lastcommand_value.substr(4, lastcommand_value.length());
+	}
 	return lastcommand_type; //0 - type - ERROR
 }
 
