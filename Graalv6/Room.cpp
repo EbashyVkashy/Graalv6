@@ -38,6 +38,11 @@ void Room::RemoveFromStash(int itemposition)
 	stash.erase(stash.begin() + itemposition);
 }
 
+void Room::LightOff()
+{
+	light = false;
+}
+
 void Room::OpenDoor(int dir)
 {
 	walls[dir] = 1;

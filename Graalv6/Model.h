@@ -18,6 +18,7 @@ public:
 	int NumberOfDoors();
 	int PlayerXpos();
 	int PlayerYpos();
+	int RoomTypeReturn();
 	bool WestDoor();
 	bool NorthDoor();
 	bool EastDoor();

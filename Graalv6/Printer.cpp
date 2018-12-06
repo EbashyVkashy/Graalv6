@@ -81,6 +81,16 @@ void Printer::RoomStatus(Model & model)
 	std::cout << std::endl;
 }
 
+void Printer::DarkRoomStatus()
+{
+	std::cout << "Can`see anything in this dark place!" << std::endl;
+}
+
+void Printer::OnlyMove()
+{
+	std::cout << "You can only move in dark room." << std::endl;
+}
+
 Printer::Printer()
 {
 }

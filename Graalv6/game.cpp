@@ -3,6 +3,7 @@
 #include "Commands.h"
 
 void StandardRoom(Model &, Commands &, Printer &, bool &victoryflag);
+void DarkRoom(Model &, Commands &, Printer &);
 
 int main()
 {
@@ -30,7 +31,19 @@ int main()
 
 	while (model.player.life > 0 && victoryflag == false)
 	{
-		StandardRoom(model, commands, printer, victoryflag);
+		enum room_type {STANDARDROOM = 0, DARKROOM = 1};
+		int temp = model.RoomTypeReturn();
+		switch (temp)
+		{
+		case STANDARDROOM:
+			StandardRoom(model, commands, printer, victoryflag);
+			break;
+		case DARKROOM:
+			DarkRoom(model, commands, printer);
+			break;
+		default:
+			break;
+		}
 	}
 }
 
@@ -86,6 +99,49 @@ void StandardRoom(Model &model, Commands &commands, Printer &printer,bool &victo
 			return;
 		}
 		victoryflag = true;
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+void DarkRoom(Model &model, Commands &commands, Printer &printer)
+{
+	enum command_type { ERROR = 0, MOVE = 1, GET = 2, DROP = 3, OPEN = 4 };
+	int commandtype = 0;
+	printer.DarkRoomStatus();
+	printer.YourCommand();
+	commandtype = commands.GetCommand();
+	switch (commandtype)
+	{
+	case ERROR:
+		printer.NoSuchCommand();
+		break;
+	case MOVE:
+	{
+		int way = model.CheckMove(commands.ReturnCommandValue());
+		if (way == -1) // -1 return value if no door
+		{
+			printer.NoDoor();
+			return;
+		}
+		model.Move(way);
+		break;
+	}
+	case GET:
+	{
+		printer.OnlyMove();
+		break;
+	}
+	case DROP:
+	{
+		printer.OnlyMove();
+		break;
+	}
+	case OPEN:
+	{	
+		printer.OnlyMove();
 		break;
 	}
 	default:

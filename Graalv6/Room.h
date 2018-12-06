@@ -14,6 +14,7 @@ public:
 	int CheckStash(std::string itemtype_compare);
 	Item PassFromStash(int itemposition);
 	void RemoveFromStash(int itemposition);
+	void LightOff();
 	void OpenDoor(int dir);
 	Room();
 	~Room();

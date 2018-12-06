@@ -13,6 +13,8 @@ public:
 	void NoSuchCommand();
 	void NoSuchItem();
 	void RoomStatus(Model &);
+	void DarkRoomStatus();
+	void OnlyMove();
 	Printer();
 	~Printer();
 };

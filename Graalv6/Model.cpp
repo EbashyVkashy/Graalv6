@@ -1,6 +1,5 @@
 #include "Model.h"
 
-
 void Model::Move(int dir)
 {
 	lastmovedirection = dir;
@@ -88,6 +87,15 @@ int Model::PlayerYpos()
 	return tempy;
 }
 
+int Model::RoomTypeReturn()
+{
+	if (labyrinth.rooms[player.position].light == false && labyrinth.rooms[player.position].CheckStash("torch") < 0 && player.CheckInventory("torch") < 0)
+	{
+		return 1; // Dark room
+	}
+	return 0; //standard room;
+}
+
 bool Model::WestDoor()
 {
 	if (labyrinth.rooms[player.position].walls[0] == 1)
@@ -137,6 +145,10 @@ std::string Model::ReturnItemName(int position)
 
 void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting player initial position
 {
+	const int ammount_doors = labyrinth.width * labyrinth.height;
+	const int ammount_torches = (labyrinth.width * labyrinth.height) / 2;
+	const int ammount_darkrooms = (labyrinth.width * labyrinth.height) / 3;
+
 	labyrinth.LabCreation(labyrinth.width, labyrinth.height); // initializing labyrinth
 
 	player.position = std::rand() % (labyrinth.width * labyrinth.height); // setting player initial position
@@ -233,11 +245,25 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 		}
 	}
 
-	for (int i = 0; i < (labyrinth.width * labyrinth.height); i++) //add random doors
+	for (int i = 0; i < ammount_doors; i++) //add random doors
 	{
 		int temp = 0;
-		temp = rand() % labyrinth.height * labyrinth.width;
+		temp = rand() % (labyrinth.height * labyrinth.width);
 		labyrinth.OpenSide(temp, rand() % 4);
+	}
+
+	for (int i = 0; i < ammount_torches; i++) //add torches
+	{
+		int temp = 0;
+		item_toadd.CreateItem("torch");
+		temp = rand() % (labyrinth.height * labyrinth.width);
+		labyrinth.rooms[temp].AddToStash(item_toadd);
+	}
+	for (int i = 0; i < ammount_darkrooms; i++) //add dark rooms
+	{
+		int temp = 0;
+		temp = rand() % (labyrinth.height * labyrinth.width);
+		labyrinth.rooms[temp].LightOff();
 	}
 }
 
