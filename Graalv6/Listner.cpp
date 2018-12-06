@@ -5,8 +5,8 @@
 int Listner::ListenSize()
 {
 	int temp = 0;
-	std::cin >> temp;
-	std::cin.ignore();
+	scanf_s("%i", &temp);
+	while ((getchar()) != '\n');
 	return temp;
 }
 

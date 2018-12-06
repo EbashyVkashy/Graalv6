@@ -1,7 +1,6 @@
 #include "Model.h"
 #include "Printer.h"
 #include "Commands.h"
-#include <iostream>
 
 void StandardRoom(Model &, Commands &, Printer &, bool &victoryflag);
 void DarkRoom(Model &, Commands &, Printer &);
