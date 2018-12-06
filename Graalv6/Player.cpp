@@ -4,8 +4,13 @@
 
 void Player::PlayerInit(int x, int y)
 {
+	const int start_gold = 0;
 	initial_life = (x + y) * 2;
 	life = initial_life;
+	Item tempitem;
+	tempitem.CreateItem("gold");
+	tempitem.SetStartGold(start_gold);
+	AddToInventory(tempitem);
 }
 
 void Player::AddToInventory(Item & itemposition)
@@ -64,6 +69,16 @@ void Player::RestoreLife()
 	{
 		life = initial_life;
 	}
+}
+
+void Player::AddGold(int quantity, int inventory_position)
+{
+	inventory[inventory_position].gold_quantity += quantity;
+}
+
+void Player::LoseGold(int inventory_position)
+{
+	inventory[inventory_position].gold_quantity = 0;
 }
 
 Player::Player()

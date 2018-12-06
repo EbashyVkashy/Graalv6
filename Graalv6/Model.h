@@ -19,6 +19,7 @@ public:
 	int PlayerXpos();
 	int PlayerYpos();
 	int RoomTypeReturn();
+	int ReturnGoldQuantity(int position);
 	bool WestDoor();
 	bool NorthDoor();
 	bool EastDoor();
@@ -28,6 +29,8 @@ public:
 	void Eat(int stash_position);
 	void GenerateLevel();
 	void SetPlayerValues();
+	void GoldToInv(int position);
+	void GoldToStash(int position);
 	Model();
 	~Model();
 };

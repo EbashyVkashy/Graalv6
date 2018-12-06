@@ -16,6 +16,7 @@ public:
 	void RoomStatus(Model &);
 	void DarkRoomStatus();
 	void OnlyMove();
+	void NoGold();
 	Printer();
 	~Printer();
 };

@@ -81,6 +81,10 @@ void Printer::RoomStatus(Model & model)
 		for (int i = 0; i < items_number; i++)
 		{
 			std::cout << " " << model.ReturnItemName(i);
+			if (model.ReturnItemName(i) == "gold")
+			{
+				std::cout << " " << model.ReturnGoldQuantity(i);
+			}
 		}
 	}
 	std::cout << std::endl;
@@ -94,6 +98,11 @@ void Printer::DarkRoomStatus()
 void Printer::OnlyMove()
 {
 	std::cout << "You can only move in dark room." << std::endl;
+}
+
+void Printer::NoGold()
+{
+	std::cout << "There is no gold!" << std::endl;
 }
 
 Printer::Printer()

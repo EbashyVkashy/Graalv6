@@ -48,6 +48,18 @@ void Room::OpenDoor(int dir)
 	walls[dir] = 1;
 }
 
+void Room::AddGold(Item &gold_toadd)
+{
+	int temp = CheckStash("gold");
+	if (temp == -1)
+	{
+		AddToStash(gold_toadd);
+		return;
+	}
+	int temp_goldquantity = gold_toadd.gold_quantity;
+	stash[temp].AddGold(temp_goldquantity);
+}
+
 Room::Room()
 {
 }

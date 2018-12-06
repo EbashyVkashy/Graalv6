@@ -1,4 +1,5 @@
 #include "Model.h"
+#include <iostream>
 
 void Model::Move(int dir)
 {
@@ -96,6 +97,12 @@ int Model::RoomTypeReturn()
 	return 0; //standard room;
 }
 
+int Model::ReturnGoldQuantity(int position)
+{
+	int temp = labyrinth.rooms[player.position].stash[position].gold_quantity;
+	return temp;
+}
+
 bool Model::WestDoor()
 {
 	if (labyrinth.rooms[player.position].walls[0] == 1)
@@ -138,6 +145,25 @@ int Model::ItemsInStash()
 	return quantity;
 }
 
+void Model::GoldToInv(int position)
+{
+	Item item_topass;
+	item_topass = labyrinth.rooms[player.position].PassFromStash(position);
+	int temp_gold = item_topass.GoldQuantity();
+	labyrinth.rooms[player.position].RemoveFromStash(position);
+	int pos_inventory = player.CheckInventory("gold");
+	std::cout << std::endl << pos_inventory;
+	player.AddGold(temp_gold, pos_inventory);
+}
+
+void Model::GoldToStash(int position)
+{
+	Item item_topass;
+	item_topass = player.PassFromInv(position);
+	labyrinth.rooms[player.position].AddGold(item_topass);
+	player.LoseGold(position);
+}
+
 std::string Model::ReturnItemName(int position)
 {
 	return labyrinth.rooms[player.position].stash[position].itemname;
@@ -154,7 +180,8 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 	const int ammount_doors = labyrinth.width * labyrinth.height;
 	const int ammount_torches = (labyrinth.width * labyrinth.height) / 2;
 	const int ammount_darkrooms = (labyrinth.width * labyrinth.height) / 3;
-	const int ammound_food = (labyrinth.width * labyrinth.height) / 2;
+	const int ammount_food = (labyrinth.width * labyrinth.height) / 2;
+	const int ammount_gold = (labyrinth.width * labyrinth.height) / 2;
 
 	labyrinth.LabCreation(labyrinth.width, labyrinth.height); // initializing labyrinth
 
@@ -272,10 +299,17 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 		temp = rand() % (labyrinth.height * labyrinth.width);
 		labyrinth.rooms[temp].LightOff();
 	}
-	for (int i = 0; i < ammound_food; i++) //add food
+	for (int i = 0; i < ammount_food; i++) //add food
 	{
 		int temp = 0;
 		item_toadd.CreateItem("food");
+		temp = rand() % (labyrinth.height * labyrinth.width);
+		labyrinth.rooms[temp].AddToStash(item_toadd);
+	}
+	for (int i = 0; i < ammount_gold; i++) //add gold
+	{
+		int temp = 0;
+		item_toadd.CreateItem("gold");
 		temp = rand() % (labyrinth.height * labyrinth.width);
 		labyrinth.rooms[temp].AddToStash(item_toadd);
 	}
@@ -285,6 +319,8 @@ void Model::SetPlayerValues()
 {
 	player.PlayerInit(labyrinth.width, labyrinth.height);
 }
+
+
 
 Model::Model()
 {

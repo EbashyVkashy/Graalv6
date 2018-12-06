@@ -24,6 +24,25 @@ void Item::CreateItem(std::string itemtype_tocreate)
 			break;
 		}
 	}
+	if (itemtype == "gold")
+	{
+		gold_quantity = rand() % 500;
+	}
+}
+
+void Item::SetStartGold(int start_gold)
+{
+	gold_quantity = start_gold;
+}
+
+int Item::GoldQuantity()
+{
+	return gold_quantity;
+}
+
+void Item::AddGold(int quantity)
+{
+	gold_quantity += quantity;
 }
 
 Item::Item()

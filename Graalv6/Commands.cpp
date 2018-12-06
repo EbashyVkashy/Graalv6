@@ -14,25 +14,42 @@ int Commands::GetCommand()
 	if (lastcommand_value == "W" || lastcommand_value == "N" || lastcommand_value == "E" || lastcommand_value == "S") // type - MOVE
 	{
 		lastcommand_type = 1; // type - MOVE
+		return lastcommand_type;
 	}
-	if (lastcommand_value.substr(0, 4) == "get ")
+	if (lastcommand_value == "get gold") // CRUCIAL! MUST BE BEFORE "get " - check
+	{
+		lastcommand_type = 6;
+		lastcommand_value = lastcommand_value.substr(4, lastcommand_value.length());
+		return lastcommand_type;
+	}
+	if (lastcommand_value == "drop gold") // CRUCIAL! MUST BE BEFORE "drop " - check
+	{
+		lastcommand_type = 7;
+		lastcommand_value = lastcommand_value.substr(5, lastcommand_value.length());
+		return lastcommand_type;
+	}
+	if (lastcommand_value.substr(0, 4) == "get ") // CRUCIAL! MUST BE AFTER "get gold"  - check
 	{
 		lastcommand_type = 2; 
 		lastcommand_value = lastcommand_value.substr(4, lastcommand_value.length());
+		return lastcommand_type;
 	}
-	if (lastcommand_value.substr(0, 5) == "drop ")
+	if (lastcommand_value.substr(0, 5) == "drop ")// CRUCIAL! MUST BE AFTER "drop gold " - check
 	{
 		lastcommand_type = 3; 
 		lastcommand_value = lastcommand_value.substr(5, lastcommand_value.length());
+		return lastcommand_type;
 	}
 	if (lastcommand_value == "open")
 	{
 		lastcommand_type = 4;
+		return lastcommand_type;
 	}
 	if (lastcommand_value.substr(0, 4) == "eat ")
 	{
 		lastcommand_type = 5;
 		lastcommand_value = lastcommand_value.substr(4, lastcommand_value.length());
+		return lastcommand_type;
 	}
 	return lastcommand_type; //0 - type - ERROR
 }

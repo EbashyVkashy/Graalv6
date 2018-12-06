@@ -16,6 +16,7 @@ public:
 	void RemoveFromStash(int itemposition);
 	void LightOff();
 	void OpenDoor(int dir);
+	void AddGold(Item &gold_toadd);
 	Room();
 	~Room();
 };
