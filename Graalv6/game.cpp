@@ -1,6 +1,7 @@
 #include "Model.h"
 #include "Printer.h"
 #include "Commands.h"
+#include <iostream>
 
 void StandardRoom(Model &, Commands &, Printer &, bool &victoryflag);
 void DarkRoom(Model &, Commands &, Printer &);
@@ -167,8 +168,8 @@ void DarkRoom(Model &model, Commands &commands, Printer &printer)
 			return;
 		}
 	default:
+		printer.OnlyMove();
+		return;
 		break;
 	}
-	printer.OnlyMove();
-	return;
 }
