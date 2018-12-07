@@ -20,6 +20,7 @@ public:
 	void LightOff();
 	void AddMonster(Monster &);
 	std::string ReturnMonsterName();
+	void RemoveMonster();
 	void OpenDoor(int dir);
 	void AddGold(Item &gold_toadd);
 	Room();

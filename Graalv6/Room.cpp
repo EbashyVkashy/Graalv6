@@ -55,6 +55,11 @@ std::string Room::ReturnMonsterName()
 	return monster.monstername;
 }
 
+void Room::RemoveMonster()
+{
+	monsterexistence = false;
+}
+
 void Room::OpenDoor(int dir)
 {
 	walls[dir] = 1;

@@ -20,6 +20,7 @@ public:
 	void LoseLife();
 	void AddGold(int quantity, int inventory_position);
 	void LoseGold(int inventory_position);
+	bool AskSword();
 	Player();
 	~Player();
 };

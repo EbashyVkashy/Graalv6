@@ -25,6 +25,10 @@ public:
 	void NotInTime();
 	void Death();
 	void Victory();
+	void NoSword();
+	void MonsterKilled();
+	void CouldntKill();
+	void NoMonster();
 	Printer();
 	~Printer();
 };

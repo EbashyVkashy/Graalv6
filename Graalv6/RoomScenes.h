@@ -6,7 +6,7 @@
 class RoomScenes
 {
 private:
-	enum command_type { ERROR = 0, MOVE = 1, GET = 2, DROP = 3, OPEN = 4, EAT = 5, GETGOLD = 6, DROPGOLD = 7, NOTINTIME = 8 };
+	enum command_type { ERROR = 0, MOVE = 1, GET = 2, DROP = 3, OPEN = 4, EAT = 5, GETGOLD = 6, DROPGOLD = 7, NOTINTIME = 8, FIGHT = 9 };
 	void Move(Model &, Commands &, Printer &, bool &victoryflag);
 	void Get(Model &, Commands &, Printer &, bool &victoryflag);
 	void Drop(Model &, Commands &, Printer &, bool &victoryflag);
@@ -17,6 +17,8 @@ private:
 	void NotInTime(Model &, Commands &, Printer &, bool &victoryflag);
 	void LoseHp(Model &, Commands &, Printer &, bool &victoryflag);
 	void MoveBack(Model &, Commands &, Printer &, bool &victoryflag);
+	bool FightPossibility(Model &, Commands &, Printer &, bool &victoryflag);
+	void KillMonster(Model &, Commands &, Printer &, bool &victoryflag);
 public:
 	void StandardRoom(Model &, Commands &, Printer &, bool &victoryflag);
 	void DarkRoom(Model &, Commands &, Printer &, bool &victoryflag);

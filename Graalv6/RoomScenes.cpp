@@ -34,6 +34,14 @@ void RoomScenes::StandardRoom(Model &model, Commands &commands, Printer &printer
 	case DROPGOLD:
 		DropGold(model, commands, printer, victoryflag);
 		break;
+	case FIGHT:
+	{
+		if (FightPossibility(model, commands, printer, victoryflag) == true)
+		{
+			KillMonster(model, commands, printer, victoryflag);
+		}
+		break;
+	}
 	default:
 		break;
 	}
@@ -115,6 +123,29 @@ void RoomScenes::MonsterRoom(Model &model, Commands &commands, Printer &printer,
 		LoseHp(model, commands, printer, victoryflag);
 		return;
 		break;
+	case FIGHT:
+	{
+		if (FightPossibility(model, commands, printer, victoryflag) == true)
+		{
+			switch (commandsuccess)
+			{
+			case GOTHIT:
+				printer.CouldntKill();
+				MoveBack(model, commands, printer, victoryflag);
+				LoseHp(model, commands, printer, victoryflag);
+				return;
+				break;
+			case SUCCESS:
+				KillMonster(model, commands, printer, victoryflag);
+				printer.MonsterKilled();
+				return;
+				break;
+			default:
+				break;
+			}
+		}
+		break;
+	}
 	default:
 		break;
 	}
@@ -233,4 +264,24 @@ void RoomScenes::MoveBack(Model &model, Commands &commands, Printer &printer, bo
 	int backdir;
 	backdir = model.ReturnBackDirection();
 	model.Move(backdir);
+}
+
+bool RoomScenes::FightPossibility(Model &model, Commands &commands, Printer &printer, bool &victoryflag)
+{
+	if (model.labyrinth.rooms[model.ReturnPlayerPos()].monsterexistence == false)
+	{
+		printer.NoMonster();
+		return false;
+	}
+	if (model.AskForSword() == false)
+	{
+		printer.NoSword();
+		return false;
+	}
+	return true;
+}
+
+void RoomScenes::KillMonster(Model &model, Commands &commands, Printer &printer, bool &victoryflag)
+{
+	model.DeleteMonster();
 }

@@ -6,7 +6,8 @@ int Commands::GetSize()
 	int value = listner.ListenSize();
 	return value;
 }
-int Commands::GetCommand() // 8 - reserved for GetCommandWIthTimer();
+int Commands::GetCommand() // 8 - reserved for GetCommandWIthTimer()
+						   // ERROR = 0, MOVE = 1, GET = 2, DROP = 3, OPEN = 4, EAT = 5, GETGOLD = 6, DROPGOLD = 7, NOTINTIME = 8, FIGHT = 9
 {
 	int lastcommand_type = 0;
 	lastcommand_value = listner.ListenCommand();
@@ -48,6 +49,11 @@ int Commands::GetCommand() // 8 - reserved for GetCommandWIthTimer();
 	{
 		lastcommand_type = 5;
 		lastcommand_value = lastcommand_value.substr(4, lastcommand_value.length());
+		return lastcommand_type;
+	}
+	if (lastcommand_value ==  "fight")
+	{
+		lastcommand_type = 9;
 		return lastcommand_type;
 	}
 	return lastcommand_type; //0 - type - ERROR

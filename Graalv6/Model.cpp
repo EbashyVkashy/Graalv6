@@ -166,12 +166,24 @@ int Model::ReturnBackDirection()
 	default:
 		break;
 	}
+	return -1000; // something gonna go wrong  
 }
 
 std::string Model::ReturnMonsterName()
 {
 	std::string name = labyrinth.rooms[player.position].ReturnMonsterName();
-	return std::string();
+	return name;
+}
+
+int Model::ReturnPlayerPos()
+{
+	int temp = player.position;
+	return temp;
+}
+
+bool Model::AskForSword()
+{
+	return player.AskSword();
 }
 
 int Model::ItemsInStash()
@@ -198,6 +210,11 @@ void Model::GoldToStash(int position)
 	player.LoseGold(position);
 }
 
+void Model::DeleteMonster()
+{
+	labyrinth.rooms[player.position].RemoveMonster();
+}
+
 std::string Model::ReturnItemName(int position)
 {
 	return labyrinth.rooms[player.position].stash[position].itemname;
@@ -217,6 +234,7 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 	const int ammount_food = (labyrinth.width * labyrinth.height) / 2;
 	const int ammount_gold = (labyrinth.width * labyrinth.height) / 2;
 	const int ammount_monsters = (labyrinth.width * labyrinth.height) / 3;
+	const int ammoumt_swords = (labyrinth.width * labyrinth.height) / 2;
 
 	labyrinth.LabCreation(labyrinth.width, labyrinth.height); // initializing labyrinth
 
@@ -355,13 +373,20 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 	{
 		int temp = 0;
 		Monster monster_toadd;
+		monster_toadd.CreateMonster();
 		temp = rand() % (labyrinth.height * labyrinth.width);
 		if (temp != player.position) // no monster in starting position
 		{
 			labyrinth.rooms[temp].AddMonster(monster_toadd);
 		}
 	}
-
+	for (int i = 0; i < ammoumt_swords; i++) // add swords
+	{
+		int temp = 0;
+		item_toadd.CreateItem("sword");
+		temp = rand() % (labyrinth.height * labyrinth.width);
+		labyrinth.rooms[temp].AddToStash(item_toadd);
+	}
 }
 
 void Model::SetPlayerValues()

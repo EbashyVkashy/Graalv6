@@ -27,6 +27,8 @@ public:
 	bool SouthDoor();
 	int ReturnBackDirection();
 	std::string ReturnMonsterName();
+	int ReturnPlayerPos();
+	bool AskForSword();
 	int ItemsInStash();
 	std::string ReturnItemName(int position);
 	void Eat(int stash_position);
@@ -34,6 +36,7 @@ public:
 	void SetPlayerValues();
 	void GoldToInv(int position);
 	void GoldToStash(int position);
+	void DeleteMonster();
 	Model();
 	~Model();
 };

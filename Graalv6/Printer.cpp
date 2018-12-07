@@ -92,7 +92,8 @@ void Printer::RoomStatus(Model & model)
 
 void Printer::EvilMonster(Model &model)
 {
-	std::cout << "There is an eveil " << model.ReturnMonsterName() << " in the room!" << std::endl;
+	std::string temp = model.ReturnMonsterName();
+	std::cout << "There is an evil " << temp << " in the room!" << std::endl;
 }
 
 void Printer::DarkRoomStatus()
@@ -143,6 +144,26 @@ void Printer::Death()
 void Printer::Victory()
 {
 	std::cout << "You found Holy Graal, congratulations!" << std::endl;
+}
+
+void Printer::NoSword()
+{
+	std::cout << "You have no sword." << std::endl;
+}
+
+void Printer::MonsterKilled()
+{
+	std::cout << "You killed monster." << std::endl;
+}
+
+void Printer::CouldntKill()
+{
+	std::cout << "Couldnt kill monster. Lost 10% of hp and moved to previous room." << std::endl;
+}
+
+void Printer::NoMonster()
+{
+	std::cout << "There is no monster." << std::endl;
 }
 
 

@@ -90,6 +90,16 @@ void Player::LoseGold(int inventory_position)
 	inventory[inventory_position].gold_quantity = 0;
 }
 
+bool Player::AskSword()
+{
+	for (int i = 0; i < inventory.size(); i++)
+	{
+		if (inventory[i].itemname == "sword")
+			return true;
+	}
+	return false;
+}
+
 Player::Player()
 {
 }

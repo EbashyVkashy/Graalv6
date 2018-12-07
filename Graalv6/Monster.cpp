@@ -1,7 +1,5 @@
 #include "Monster.h"
 
-
-
 void Monster::CreateMonster()
 {
 	int temp = rand() % 3;
