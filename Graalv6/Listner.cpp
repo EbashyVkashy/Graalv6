@@ -17,6 +17,11 @@ std::string Listner::ListenCommand()
 	return string_toreturn;
 }
 
+std::string Listner::ListenCommandWithTimer()
+{
+	return std::string();
+}
+
 Listner::Listner()
 {
 }

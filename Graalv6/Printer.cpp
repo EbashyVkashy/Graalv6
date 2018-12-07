@@ -105,6 +105,7 @@ void Printer::NoGold()
 	std::cout << "There is no gold!" << std::endl;
 }
 
+
 Printer::Printer()
 {
 }

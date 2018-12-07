@@ -1,5 +1,4 @@
 #include "Model.h"
-#include <iostream>
 
 void Model::Move(int dir)
 {
@@ -94,6 +93,10 @@ int Model::RoomTypeReturn()
 	{
 		return 1; // Dark room
 	}
+	if (labyrinth.rooms[player.position].monsterexistence == true)
+	{
+		return 2; // Monster room
+	}
 	return 0; //standard room;
 }
 
@@ -152,7 +155,6 @@ void Model::GoldToInv(int position)
 	int temp_gold = item_topass.GoldQuantity();
 	labyrinth.rooms[player.position].RemoveFromStash(position);
 	int pos_inventory = player.CheckInventory("gold");
-	std::cout << std::endl << pos_inventory;
 	player.AddGold(temp_gold, pos_inventory);
 }
 
@@ -182,6 +184,7 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 	const int ammount_darkrooms = (labyrinth.width * labyrinth.height) / 3;
 	const int ammount_food = (labyrinth.width * labyrinth.height) / 2;
 	const int ammount_gold = (labyrinth.width * labyrinth.height) / 2;
+	const int ammount_monsters = (labyrinth.width * labyrinth.height) / 3;
 
 	labyrinth.LabCreation(labyrinth.width, labyrinth.height); // initializing labyrinth
 
@@ -297,7 +300,10 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 	{
 		int temp = 0;
 		temp = rand() % (labyrinth.height * labyrinth.width);
-		labyrinth.rooms[temp].LightOff();
+		if (temp != player.position) // no dark room in starting position
+		{
+			labyrinth.rooms[temp].LightOff();
+		}
 	}
 	for (int i = 0; i < ammount_food; i++) //add food
 	{
@@ -313,6 +319,17 @@ void Model::GenerateLevel() // Building labyrinth - core obj - doors - setting p
 		temp = rand() % (labyrinth.height * labyrinth.width);
 		labyrinth.rooms[temp].AddToStash(item_toadd);
 	}
+	for (int i = 0; i < ammount_monsters; i++) // add monsters
+	{
+		int temp = 0;
+		Monster monster_toadd;
+		temp = rand() % (labyrinth.height * labyrinth.width);
+		if (temp != player.position) // no monster in starting position
+		{
+			labyrinth.rooms[temp].AddMonster(monster_toadd);
+		}
+	}
+
 }
 
 void Model::SetPlayerValues()

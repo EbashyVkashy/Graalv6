@@ -1,5 +1,5 @@
 #include "Commands.h"
-
+#include <ctime>
 
 
 int Commands::GetSize()
@@ -7,7 +7,7 @@ int Commands::GetSize()
 	int value = listner.ListenSize();
 	return value;
 }
-int Commands::GetCommand()
+int Commands::GetCommand() // 8 - reserved for GetCommandWIthTimer();
 {
 	int lastcommand_type = 0;
 	lastcommand_value = listner.ListenCommand();
@@ -52,6 +52,19 @@ int Commands::GetCommand()
 		return lastcommand_type;
 	}
 	return lastcommand_type; //0 - type - ERROR
+}
+
+int Commands::GetCommandWithTimer()
+{
+	const int time_tofail = 5000;
+	clock_t timer;
+	timer = clock();
+	int toreturn = GetCommand();
+	if ((clock() - timer < time_tofail))
+	{
+		toreturn = 8; //8 - not in time ERROR
+	}
+	return GetCommand();
 }
 
 std::string Commands::ReturnCommandValue()

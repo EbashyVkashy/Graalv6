@@ -1,6 +1,5 @@
 #pragma once
 #include "Listner.h"
-#include <string>
 
 class Commands
 {
@@ -9,6 +8,7 @@ public:
 	Listner listner;
 	int GetSize();
 	int GetCommand();
+	int GetCommandWithTimer();
 	std::string ReturnCommandValue();
 	Commands();
 	~Commands();

@@ -120,9 +120,11 @@
     <ClInclude Include="Labyrinth.h" />
     <ClInclude Include="Listner.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Printer.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="RoomScenes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Commands.cpp" />
@@ -131,9 +133,11 @@
     <ClCompile Include="Labyrinth.cpp" />
     <ClCompile Include="Listner.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Printer.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="RoomScenes.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

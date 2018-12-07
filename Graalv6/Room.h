@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Item.h"
+#include "Monster.h"
 #include <string>
 
 class Room
@@ -8,6 +9,8 @@ class Room
 public:
 	int walls[4]; // 0-West, 1-North, 2-East, 3-South
 	std::vector<Item> stash;
+	Monster monster;
+	bool monsterexistence;
 	bool light; // 0-no light, 1-light
 	void RoomInit();
 	void AddToStash(Item &item);
@@ -15,6 +18,7 @@ public:
 	Item PassFromStash(int itemposition);
 	void RemoveFromStash(int itemposition);
 	void LightOff();
+	void AddMonster(Monster &);
 	void OpenDoor(int dir);
 	void AddGold(Item &gold_toadd);
 	Room();

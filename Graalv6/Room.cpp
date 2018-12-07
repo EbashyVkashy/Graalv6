@@ -7,8 +7,9 @@ void Room::RoomInit()
 	for (int i = 0; i < 4; i++)
 	{
 		walls[i] = 0;
-		light = true;
 	}
+	light = true;
+	monsterexistence = false;
 }
 
 void Room::AddToStash(Item & item)
@@ -41,6 +42,12 @@ void Room::RemoveFromStash(int itemposition)
 void Room::LightOff()
 {
 	light = false;
+}
+
+void Room::AddMonster(Monster &passingmonster)
+{
+	monster = passingmonster;
+	monsterexistence = true;
 }
 
 void Room::OpenDoor(int dir)
