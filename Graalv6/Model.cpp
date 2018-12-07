@@ -87,6 +87,11 @@ int Model::PlayerYpos()
 	return tempy;
 }
 
+void Model::PlayerGotHit()
+{
+	player.LoseLife();
+}
+
 int Model::RoomTypeReturn()
 {
 	if (labyrinth.rooms[player.position].light == false && labyrinth.rooms[player.position].CheckStash("torch") < 0 && player.CheckInventory("torch") < 0)
@@ -140,6 +145,33 @@ bool Model::SouthDoor()
 		return true;
 	}
 	return false;
+}
+
+int Model::ReturnBackDirection()
+{
+	switch (lastmovedirection)
+	{
+	case 0:
+		return 2;
+		break;
+	case 1:
+		return 3;
+		break;
+	case 2:
+		return 0;
+		break;
+	case 3:
+		return 1;
+		break;
+	default:
+		break;
+	}
+}
+
+std::string Model::ReturnMonsterName()
+{
+	std::string name = labyrinth.rooms[player.position].ReturnMonsterName();
+	return std::string();
 }
 
 int Model::ItemsInStash()

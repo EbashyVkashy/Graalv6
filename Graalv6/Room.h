@@ -19,6 +19,7 @@ public:
 	void RemoveFromStash(int itemposition);
 	void LightOff();
 	void AddMonster(Monster &);
+	std::string ReturnMonsterName();
 	void OpenDoor(int dir);
 	void AddGold(Item &gold_toadd);
 	Room();

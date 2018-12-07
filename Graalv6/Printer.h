@@ -14,9 +14,14 @@ public:
 	void NoSuchItem();
 	void NoSuchFood();
 	void RoomStatus(Model &);
+	void EvilMonster(Model &);
 	void DarkRoomStatus();
 	void OnlyMove();
 	void NoGold();
+	void FailOnCommand();
+	void SuccesLoseLife();
+	void MoveLoseLife();
+	void SuccesOnCommand();
 	Printer();
 	~Printer();
 };

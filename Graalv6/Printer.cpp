@@ -90,6 +90,11 @@ void Printer::RoomStatus(Model & model)
 	std::cout << std::endl;
 }
 
+void Printer::EvilMonster(Model &model)
+{
+	std::cout << "There is an eveil " << model.ReturnMonsterName() << " in the room!" << std::endl;
+}
+
 void Printer::DarkRoomStatus()
 {
 	std::cout << "Can`see anything in this dark place!" << std::endl;
@@ -103,6 +108,26 @@ void Printer::OnlyMove()
 void Printer::NoGold()
 {
 	std::cout << "There is no gold!" << std::endl;
+}
+
+void Printer::FailOnCommand()
+{
+	std::cout << "You failed the command, lost 10% hp and moved to previous room." << std::endl;
+}
+
+void Printer::SuccesLoseLife()
+{
+	std::cout << "You successed the command, but lost 10% hp and moved to previous room." << std::endl;
+}
+
+void Printer::MoveLoseLife()
+{
+	std::cout << "You moved, but lost 10% hp ." << std::endl;
+}
+
+void Printer::SuccesOnCommand()
+{
+	std::cout << "You successed the command." << std::endl;
 }
 
 

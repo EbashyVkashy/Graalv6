@@ -71,6 +71,15 @@ void Player::RestoreLife()
 	}
 }
 
+void Player::LoseLife()
+{
+	life = life - (initial_life % 10);
+	if (life < 0)
+	{
+		life = 0;
+	}
+}
+
 void Player::AddGold(int quantity, int inventory_position)
 {
 	inventory[inventory_position].gold_quantity += quantity;

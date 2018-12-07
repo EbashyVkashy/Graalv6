@@ -50,6 +50,11 @@ void Room::AddMonster(Monster &passingmonster)
 	monsterexistence = true;
 }
 
+std::string Room::ReturnMonsterName()
+{
+	return monster.monstername;
+}
+
 void Room::OpenDoor(int dir)
 {
 	walls[dir] = 1;

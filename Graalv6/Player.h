@@ -17,6 +17,7 @@ public:
 	void RemoveFromInv(int itemposition);
 	void Move(int dir, int x);
 	void RestoreLife();
+	void LoseLife();
 	void AddGold(int quantity, int inventory_position);
 	void LoseGold(int inventory_position);
 	Player();

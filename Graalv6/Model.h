@@ -18,12 +18,15 @@ public:
 	int NumberOfDoors();
 	int PlayerXpos();
 	int PlayerYpos();
+	void PlayerGotHit();
 	int RoomTypeReturn();
 	int ReturnGoldQuantity(int position);
 	bool WestDoor();
 	bool NorthDoor();
 	bool EastDoor();
 	bool SouthDoor();
+	int ReturnBackDirection();
+	std::string ReturnMonsterName();
 	int ItemsInStash();
 	std::string ReturnItemName(int position);
 	void Eat(int stash_position);

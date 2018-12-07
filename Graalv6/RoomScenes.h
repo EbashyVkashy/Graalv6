@@ -15,6 +15,8 @@ private:
 	void GetGold(Model &, Commands &, Printer &, bool &victoryflag);
 	void DropGold(Model &, Commands &, Printer &, bool &victoryflag);
 	void NotInTime(Model &, Commands &, Printer &, bool &victoryflag);
+	void LoseHp(Model &, Commands &, Printer &, bool &victoryflag);
+	void MoveBack(Model &, Commands &, Printer &, bool &victoryflag);
 public:
 	void StandardRoom(Model &, Commands &, Printer &, bool &victoryflag);
 	void DarkRoom(Model &, Commands &, Printer &, bool &victoryflag);
