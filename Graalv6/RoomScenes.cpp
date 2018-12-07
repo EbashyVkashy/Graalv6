@@ -66,35 +66,20 @@ void RoomScenes::MonsterRoom(Model &model, Commands &commands, Printer &printer,
 	printer.RoomStatus(model);
 	printer.EvilMonster(model);
 	printer.YourCommand();
-	commandtype = commands.GetCommand();
+	commandtype = commands.GetCommandWithTimer();
 	int commandsuccess = rand() % 3; // 0 - fail, 1 - success but forced back, 2 - full success
-	switch (commandsuccess)
-	{
-	case FAIL:
+	if (commandsuccess == FAIL)
 	{
 		MoveBack(model, commands, printer, victoryflag);
 		LoseHp(model, commands, printer, victoryflag);
 		printer.FailOnCommand();
 		return;
-		break;
-	}
-	case GOTHIT:
-	{
-		if (commandtype != MOVE)
-		{
-			printer.SuccesLoseLife();
-		}
-		break;
-	}
-	case SUCCESS:
-		printer.SuccesOnCommand();
-		break;
-	default:
-		break;
 	}
 	switch (commandtype)
 	{
 	case ERROR:
+		printer.NoSuchCommand();
+		return;
 		break;
 	case MOVE:
 	{
@@ -107,25 +92,47 @@ void RoomScenes::MonsterRoom(Model &model, Commands &commands, Printer &printer,
 		break;
 	}
 	case GET:
+		Get(model, commands, printer, victoryflag);
 		break;
 	case DROP:
+		Drop(model, commands, printer, victoryflag);
 		break;
 	case OPEN:
+		Open(model, commands, printer, victoryflag);
 		break;
 	case EAT:
+		Eat(model, commands, printer, victoryflag);
 		break;
 	case GETGOLD:
+		GetGold(model, commands, printer, victoryflag);
 		break;
 	case DROPGOLD:
+		DropGold(model, commands, printer, victoryflag);
+		break;
+	case NOTINTIME:
+		printer.NotInTime();
+		MoveBack(model, commands, printer, victoryflag);
+		LoseHp(model, commands, printer, victoryflag);
+		return;
 		break;
 	default:
 		break;
 	}
-	if (commandsuccess == GOTHIT)
+	switch (commandsuccess)
 	{
+	case SUCCESS:
+		printer.SuccesOnCommand();
+		break;
+	case GOTHIT:
+	{
+		printer.SuccesLoseLife();
 		MoveBack(model, commands, printer, victoryflag);
 		LoseHp(model, commands, printer, victoryflag);
+		break;
 	}
+	default:
+		break;
+	}	
 }
 
 RoomScenes::RoomScenes()

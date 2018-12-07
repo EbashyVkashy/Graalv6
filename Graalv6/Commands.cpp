@@ -1,7 +1,6 @@
 #include "Commands.h"
 #include <ctime>
 
-
 int Commands::GetSize()
 {
 	int value = listner.ListenSize();
@@ -60,11 +59,11 @@ int Commands::GetCommandWithTimer()
 	clock_t timer;
 	timer = clock();
 	int toreturn = GetCommand();
-	if ((clock() - timer < time_tofail))
+	if ((clock() - timer) > time_tofail)
 	{
 		toreturn = 8; //8 - not in time ERROR
 	}
-	return GetCommand();
+	return toreturn;
 }
 
 std::string Commands::ReturnCommandValue()

@@ -22,6 +22,9 @@ public:
 	void SuccesLoseLife();
 	void MoveLoseLife();
 	void SuccesOnCommand();
+	void NotInTime();
+	void Death();
+	void Victory();
 	Printer();
 	~Printer();
 };

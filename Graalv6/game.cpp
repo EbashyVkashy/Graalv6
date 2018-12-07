@@ -47,4 +47,14 @@ int main()
 			break;
 		}
 	}
+	
+	if (victoryflag == true)
+	{
+		printer.Victory();
+	}
+	if (model.player.life == 0)
+	{
+		printer.Death();
+	}
+	system("pause");
 }

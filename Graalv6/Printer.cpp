@@ -130,6 +130,21 @@ void Printer::SuccesOnCommand()
 	std::cout << "You successed the command." << std::endl;
 }
 
+void Printer::NotInTime()
+{
+	std::cout << "You were to slow!" << std::endl;
+}
+
+void Printer::Death()
+{
+	std::cout << "You found your death in this labirynth!" << std::endl;
+}
+
+void Printer::Victory()
+{
+	std::cout << "You found Holy Graal, congratulations!" << std::endl;
+}
+
 
 Printer::Printer()
 {
