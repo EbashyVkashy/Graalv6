@@ -34,6 +34,7 @@ public:
 	void Eat(int stash_position);
 	void GenerateLevel();
 	void SetPlayerValues();
+	int ReturnPlayerLife();
 	void GoldToInv(int position);
 	void GoldToStash(int position);
 	void DeleteMonster();

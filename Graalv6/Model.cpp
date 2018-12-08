@@ -394,6 +394,11 @@ void Model::SetPlayerValues()
 	player.PlayerInit(labyrinth.width, labyrinth.height);
 }
 
+int Model::ReturnPlayerLife()
+{
+	return player.life;
+}
+
 
 
 Model::Model()

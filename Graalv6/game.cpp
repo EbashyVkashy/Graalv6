@@ -29,7 +29,7 @@ int main()
 	model.GenerateLevel();
 	model.SetPlayerValues();
 
-	while (model.player.life > 0 && victoryflag == false)
+	while (model.ReturnPlayerLife() > 0 && victoryflag == false)
 	{
 		enum room_type {STANDARDROOM = 0, DARKROOM = 1, MONSTERROOM = 2};
 		int temp = model.RoomTypeReturn();
